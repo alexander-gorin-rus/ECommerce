@@ -1,0 +1,3 @@
+{
+  "mongoURI": "mongodb+srv://shop-for-max:989991@cluster0-gkfbu.mongodb.net/cleaning-shop?retryWrites=true&w=majority"
+}
