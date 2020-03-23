@@ -1,3 +1,6 @@
 {
-  "mongoURI": "mongodb+srv://shop-for-max:989991@cluster0-gkfbu.mongodb.net/cleaning-shop?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://shop-for-max:989991@cluster0-gkfbu.mongodb.net/cleaning-shop?retryWrites=true&w=majority",
+  "jwtSecret": "MaxSecret",
+  "jwtConsumerSecret": "MnuIoWt",
+  "mongoCompass": "mongodb://127.0.0.1:127.0.17"
 }

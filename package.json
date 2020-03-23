@@ -5,19 +5,36 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "clientOld": "npm start --prefix clientOld",
+    "dev": "concurrently \"npm run server\" \"npm run clientOld\"",
+    "dev1": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Alexander Gorin",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.2.5",
+    "cookie-parser": "^1.4.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-validator": "^6.4.0",
+    "express-fileupload": "^1.1.6",
+    "express-jwt": "^5.3.1",
+    "express-validator": "^6.2.0",
+    "formidable": "^1.2.2",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
     "mongoose": "^5.8.11",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "path": "^0.12.7",
+    "react-dropzone": "^10.2.1",
+    "redux-form": "^8.3.1",
     "redux-thunk": "^2.3.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "uuidv4": "^6.0.6"
   },
   "devDependencies": {
     "concurrently": "^5.1.0",

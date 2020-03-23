@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const config = require('config');
 const db = config.get('mongoURI');
+//const db = config.get('mongoCompass');
 
 const connectDB = async () => {
   try {
@@ -8,11 +9,12 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,
-      useFindAndModify: true
+      useFindAndModify: false
     });
-    console.log('mongo DB connection is OK');
+    console.log('mongo DB connection for Max shop is OK');
   } catch (err) {
     console.error(err.message);
+    process.exit(1);
   }
 };
 
