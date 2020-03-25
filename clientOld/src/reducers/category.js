@@ -8,15 +8,22 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  created: false,
-  loading: true,
+  categories: [],
   category: null,
-  categories: []
+  created: false,
+  updated: false,
+  loading: true
 };
 
 export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case CATEGORIES_GET:
+      return {
+        ...state,
+        categories: payload,
+        loading: false
+      };
     case CATEGORY_CREATE:
       return {
         ...state,
@@ -24,12 +31,12 @@ export default function(state = initialState, action) {
         loading: false,
         category: payload
       };
-
-    case CATEGORIES_GET:
+    case CATEGORY_UPDATE:
       return {
         ...state,
-        loading: false,
-        categories: payload
+        updated: true,
+        category: payload,
+        loading: false
       };
     case CATEGORY_DELETE:
     case CATEGORY_ERROR:

@@ -48,7 +48,7 @@ export const createCateg = ({ name }) => async dispatch => {
       type: CATEGORY_CREATE,
       payload: res.data
     });
-    // dispatch(loadAdmin());
+    dispatch(setAlert('Категория успешно создана', 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
@@ -62,7 +62,7 @@ export const createCateg = ({ name }) => async dispatch => {
 
 export const getCategories = () => async dispatch => {
   try {
-    const res = axios.get('/api/categories');
+    const res = await axios.get('/api/categories');
     dispatch({
       type: CATEGORIES_GET,
       payload: res.data
@@ -75,5 +75,45 @@ export const getCategories = () => async dispatch => {
     dispatch({
       type: CATEGORY_ERROR
     });
+  }
+};
+
+export const deleteCategory = id => async dispatch => {
+  try {
+    await axios.delete(`api/delete-category/${id}`);
+    dispatch({
+      type: CATEGORY_DELETE,
+      payload: id
+    });
+    dispatch(setAlert('Категория товаров успешно удалена', 'success'));
+  } catch (err) {
+    dispatch({
+      type: CATEGORY_ERROR
+    });
+  }
+};
+
+export const updateCategory = id => name => async dispatch => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const res = await axios.put(`/api/update-category/${id}`, config);
+    dispatch({
+      type: CATEGORY_UPDATE,
+      payload: res.data
+    });
+    dispatch(
+      setAlert(`В катерогию ${name} успешно внесены изменения`, 'success')
+    );
+  } catch (err) {
+    dispatch({
+      type: CATEGORY_ERROR
+    });
+    dispatch(
+      setAlert(`В категорию ${name} внести изменения не удалось`, 'danger')
+    );
   }
 };

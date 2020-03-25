@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addProduct } from '../../../../actions/product';
+import { getCategories } from '../../../../actions/category';
 import { setAlert } from '../../../../actions/alert';
 
-const CreateProduct = ({ addProduct }) => {
+const CreateProduct = ({ addProduct, getCategories }) => {
   const [values, setValues] = useState({
     name: '',
     description: '',
@@ -29,8 +30,14 @@ const CreateProduct = ({ addProduct }) => {
     formData
   } = values;
 
+  const init = () => {
+    getCategories().then(data => {
+      setValues({ ...values, categories: data, formData: new FormData() });
+    });
+  };
+
   useEffect(() => {
-    setValues({ ...values, formData: new FormData() });
+    init();
   }, []);
 
   const handleChange = name => event => {
@@ -107,11 +114,17 @@ const CreateProduct = ({ addProduct }) => {
         </div>
         <div className='form-group'>
           <label>Категория</label>
-          <select onChange={handleChange('category')} className='form-control'>
-            <option value='5e74a63bfa1c291e1c8a86e8'>
-              Средства для чистки туалетов ++
-            </option>
-            <option value='5e74d80c158e08333b37ee72'>Wall Cleaners</option>
+          <select
+            onChange={handleChange('categories')}
+            className='form-control'
+          >
+            <option>Выбрать категорию</option>
+            {categories &&
+              categories.map((c, i) => (
+                <option key={i} value={c._id}>
+                  {c.name}
+                </option>
+              ))}
           </select>
         </div>
         <button type='submit' className='btn btn-primary'>
@@ -126,10 +139,11 @@ const CreateProduct = ({ addProduct }) => {
 };
 
 CreateProduct.propTypes = {
-  addProduct: PropTypes.func.isRequired
+  addProduct: PropTypes.func.isRequired,
+  getCategories: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
-  { addProduct }
+  { addProduct, getCategories }
 )(CreateProduct);

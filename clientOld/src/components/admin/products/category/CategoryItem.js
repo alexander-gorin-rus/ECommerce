@@ -1,29 +1,35 @@
-import React, { Fragment, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-//import { getCategories } from '../../../../actions/category';
+import { deleteCategory } from '../../../../actions/category';
 
-const CategoryItem = () => {
+const CategoryItem = ({ category: { _id, name }, deleteCategory }) => {
   return (
-    <div>
-      <p>Категория:</p>
-    </div>
+    <Fragment>
+      <p className='border m-2 p-2'>
+        {name}
+        <button className='m-2 p-1 bg-warning rounded'>Редактировать</button>
+        <button
+          className='m-2 p-1 bg-danger rounded'
+          onClick={e => deleteCategory(_id)}
+        >
+          Удалить
+        </button>
+      </p>
+    </Fragment>
   );
 };
 
 CategoryItem.propTypes = {
-  //   category: PropTypes.object.isRequired,
-  //   getCategories: PropTypes.func.isRequired
+  category: PropTypes.object.isRequired,
+  deleteCategory: PropTypes.func.isRequired
 };
 
 // const mapStateToProps = state => ({
 //   category: state.category
 // });
 
-// export default connect(
-//   mapStateToProps,
-//   { getCategories }
-// )(CategoryItem);
-
-export default CategoryItem;
+export default connect(
+  null,
+  { deleteCategory }
+)(CategoryItem);

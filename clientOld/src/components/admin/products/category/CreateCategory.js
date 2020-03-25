@@ -1,12 +1,21 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Categories from './Categories';
+import CategoryItem from './CategoryItem';
 import { createCateg, getCategories } from '../../../../actions/category';
 import { setAlert } from '../../../../actions/alert';
 
-const CreateCategory = ({ createCateg, setAlert, getCategories }) => {
+const CreateCategory = ({
+  createCateg,
+  setAlert,
+  getCategories,
+  category: { categories, category }
+}) => {
+  useEffect(() => {
+    getCategories();
+  }, [getCategories]);
+
   const [form, setForm] = useState({
     name: ''
   });
@@ -26,13 +35,7 @@ const CreateCategory = ({ createCateg, setAlert, getCategories }) => {
 
   return (
     <Fragment>
-      <h2 className='text-center'>Форма создания категории товаров</h2>
-      {/* <Fragment>
-        <div>
-          Список категорий: <br />
-          <Categories />
-        </div>
-      </Fragment> */}
+      <h2 className='text-center'>Создать новую категорию товаров</h2>
       <form onSubmit={e => onSubmit(e)}>
         <div className='form-group'>
           <input
@@ -53,6 +56,19 @@ const CreateCategory = ({ createCateg, setAlert, getCategories }) => {
           Вернуться в админ панель
         </Link>
       </form>
+      <h2 className='text-center'>Список существующих категорий</h2>
+      <div className='d-flex'>
+        <div style={{ backgroundColor: '#B1EED0' }}>
+          {categories.map(category => (
+            <CategoryItem
+              className='list-inline-item mb-3'
+              key={category._id}
+              category={category}
+              style={{ marginBottom: '20px', border: '2px solid black' }}
+            />
+          ))}
+        </div>
+      </div>
     </Fragment>
   );
 };
@@ -60,10 +76,15 @@ const CreateCategory = ({ createCateg, setAlert, getCategories }) => {
 CreateCategory.propTypes = {
   createCateg: PropTypes.func.isRequired,
   setAlert: PropTypes.func.isRequired,
-  categoty: PropTypes.object
+  getCategories: PropTypes.func.isRequired,
+  category: PropTypes.object.isRequired
 };
 
+const mapStateToProps = state => ({
+  category: state.category
+});
+
 export default connect(
-  null,
-  { createCateg, setAlert }
+  mapStateToProps,
+  { createCateg, setAlert, getCategories }
 )(CreateCategory);

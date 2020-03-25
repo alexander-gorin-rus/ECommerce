@@ -61,6 +61,16 @@ router.get('/categories', async (req, res) => {
   }
 });
 
+router.get('/get-category/:id', async (req, res) => {
+  try {
+    const category = await Category.findById(req.params.id);
+    res.status(200).json(category);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 router.put('/update-category/:id', adminAuth, async (req, res) => {
   try {
     await Category.findByIdAndUpdate(
@@ -89,8 +99,8 @@ router.put('/update-category/:id', adminAuth, async (req, res) => {
 
 router.delete('/delete-category/:id', adminAuth, async (req, res) => {
   try {
-    const category = await Category.findByIdAndRemove({ _id: req.params.id });
-    category.remove();
+    const category = await Category.findById(req.params.id);
+    await category.remove();
     res.status(200).json({
       message: 'Категория товаров удалена успешно'
     });
