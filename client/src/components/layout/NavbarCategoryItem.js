@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const NavbarCategoryItem = ({ category: { name } }) => {
-  return (
-    <Fragment>
-      <option>{name}</option>
-    </Fragment>
-  );
+  return <option>{name}</option>;
 };
 
 NavbarCategoryItem.propTypes = {

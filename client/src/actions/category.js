@@ -8,6 +8,8 @@ import {
   CATEGORY_UPDATE,
   CATEGORY_DELETE,
   CATEGORY_ERROR,
+  SET_CURRENT,
+  CLEAR_CURRENT,
   GET_ADMIN,
   ADMIN_ERROR
 } from './types';
@@ -32,6 +34,21 @@ export const loadAdmin = () => async dispatch => {
   }
 };
 
+export const getCategory = id => async dispatch => {
+  try {
+    const res = await axios.get(`/get-category/${id}`);
+    dispatch({
+      type: CATEGORY_GET,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: CATEGORY_ERROR
+    });
+  }
+};
+
+//create or update category
 export const createCateg = ({ name }) => async dispatch => {
   const config = {
     headers: {
@@ -57,6 +74,43 @@ export const createCateg = ({ name }) => async dispatch => {
     dispatch({
       type: CATEGORY_ERROR
     });
+  }
+};
+
+export const setCurrent = category => {
+  return {
+    type: SET_CURRENT,
+    payload: category
+  };
+};
+
+export const clearCurrent = category => {
+  return {
+    type: CLEAR_CURRENT,
+    payload: category
+  };
+};
+
+export const updateCategory = ({ category, id }) => async dispatch => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const body = JSON.stringify({ category });
+
+    const res = await axios.put(`/api/update-category/${id}`, body, config);
+    dispatch({
+      type: CATEGORY_UPDATE,
+      payload: res.data
+    });
+    dispatch(setAlert('Название катерогии успешно изменено', 'success'));
+  } catch (err) {
+    dispatch({
+      type: CATEGORY_ERROR
+    });
+    dispatch(setAlert('В категорию внести изменения не удалось', 'danger'));
   }
 };
 
@@ -90,30 +144,5 @@ export const deleteCategory = id => async dispatch => {
     dispatch({
       type: CATEGORY_ERROR
     });
-  }
-};
-
-export const updateCategory = id => name => async dispatch => {
-  try {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    };
-    const res = await axios.put(`/api/update-category/${id}`, config);
-    dispatch({
-      type: CATEGORY_UPDATE,
-      payload: res.data
-    });
-    dispatch(
-      setAlert(`В катерогию ${name} успешно внесены изменения`, 'success')
-    );
-  } catch (err) {
-    dispatch({
-      type: CATEGORY_ERROR
-    });
-    dispatch(
-      setAlert(`В категорию ${name} внести изменения не удалось`, 'danger')
-    );
   }
 };

@@ -4,14 +4,17 @@ import {
   CATEGORIES_GET,
   CATEGORY_UPDATE,
   CATEGORY_DELETE,
-  CATEGORY_ERROR
+  CATEGORY_ERROR,
+  SET_CURRENT,
+  CLEAR_CURRENT
 } from '../actions/types';
 
 const initialState = {
   categories: [],
-  category: null,
   created: false,
   updated: false,
+  category: null,
+  current: null,
   loading: true
 };
 
@@ -27,14 +30,33 @@ export default function(state = initialState, action) {
     case CATEGORY_CREATE:
       return {
         ...state,
-        created: true,
         loading: false,
+        created: true,
         category: payload
+      };
+    case SET_CURRENT:
+      return {
+        ...state,
+        current: payload
+      };
+    case CLEAR_CURRENT:
+      return {
+        ...state,
+        current: null
       };
     case CATEGORY_UPDATE:
       return {
         ...state,
         updated: true,
+        // categories: state.categories.map(category =>
+        //   category.id === payload.id ? payload : category
+        // ),
+        category: payload,
+        loading: false
+      };
+    case CATEGORY_GET:
+      return {
+        ...state,
         category: payload,
         loading: false
       };
@@ -42,7 +64,6 @@ export default function(state = initialState, action) {
     case CATEGORY_ERROR:
       return {
         ...state,
-        created: false,
         loading: true,
         category: null
       };

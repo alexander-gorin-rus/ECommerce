@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CategoryItem from './CategoryItem';
+import Preloader from '../../../layout/Preloader';
 import { createCateg, getCategories } from '../../../../actions/category';
 import { setAlert } from '../../../../actions/alert';
 
@@ -10,7 +11,7 @@ const CreateCategory = ({
   createCateg,
   setAlert,
   getCategories,
-  category: { categories, category }
+  category: { categories, category, loading }
 }) => {
   useEffect(() => {
     getCategories();
@@ -35,7 +36,7 @@ const CreateCategory = ({
 
   return (
     <Fragment>
-      <h2 className='text-center'>Создать новую категорию товаров</h2>
+      <h4 className='text-center mt-5'>Создать новую категорию товаров</h4>
       <form onSubmit={e => onSubmit(e)}>
         <div className='form-group'>
           <input
@@ -56,19 +57,25 @@ const CreateCategory = ({
           Вернуться в админ панель
         </Link>
       </form>
-      <h2 className='text-center'>Список существующих категорий</h2>
-      <div className='d-flex'>
-        <div style={{ backgroundColor: '#B1EED0' }}>
-          {categories.map(category => (
-            <CategoryItem
-              className='list-inline-item mb-3'
-              key={category._id}
-              category={category}
-              style={{ marginBottom: '20px', border: '2px solid black' }}
-            />
-          ))}
+      <h4 className='text-center'>Список существующих категорий</h4>
+
+      {loading ? (
+        <Preloader />
+      ) : (
+        <div className='categories-list-div'>
+          <div className='center-align'>
+            <div style={{ backgroundColor: '#B1EED0' }}>
+              {categories.map(category => (
+                <CategoryItem
+                  className='list-inline-item mb-3'
+                  key={category._id}
+                  category={category}
+                />
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </Fragment>
   );
 };

@@ -7,9 +7,7 @@
     "start": "node server",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
-    "clientOld": "npm start --prefix clientOld",
-    "dev": "concurrently \"npm run server\" \"npm run clientOld\"",
-    "dev1": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Alexander Gorin",
   "license": "ISC",
