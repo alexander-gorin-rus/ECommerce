@@ -24,6 +24,7 @@ const CategoryUpdate = ({ current, updateCategory }) => {
         name
       };
       updateCategory(updatedCategory);
+      setName('');
     }
   };
 

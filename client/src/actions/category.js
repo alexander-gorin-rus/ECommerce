@@ -9,10 +9,17 @@ import {
   CATEGORY_DELETE,
   CATEGORY_ERROR,
   SET_CURRENT,
+  SET_LOADING,
   CLEAR_CURRENT,
   GET_ADMIN,
   ADMIN_ERROR
 } from './types';
+
+export const setLoading = () => {
+  return {
+    type: SET_LOADING
+  };
+};
 
 //Load admin
 export const loadAdmin = () => async dispatch => {
@@ -91,19 +98,22 @@ export const clearCurrent = category => {
   };
 };
 
-export const updateCategory = ({ category, id }) => async dispatch => {
+export const updateCategory = category => id => async dispatch => {
   try {
+    setLoading();
     const config = {
       headers: {
         'Content-Type': 'application/json'
       }
     };
-    const body = JSON.stringify({ category });
 
-    const res = await axios.put(`/api/update-category/${id}`, body, config);
+    //const { name } = req.body
+
+    const res = await axios.put(`/api/update-category/${id}`);
+
     dispatch({
-      type: CATEGORY_UPDATE,
-      payload: res.data
+      type: CATEGORY_UPDATE
+      //payload: data
     });
     dispatch(setAlert('Название катерогии успешно изменено', 'success'));
   } catch (err) {

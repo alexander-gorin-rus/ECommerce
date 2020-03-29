@@ -66,8 +66,8 @@ const Navbar = ({
   // );
 
   const guestLinks = (
-    <div>
-      <ul className=' bg-primary'>
+    <Fragment>
+      <ul className='nav nav-tabs bg-primary'>
         <li className='nav-item'>
           <Link className='nav-link text-light' to='/'>
             Главная
@@ -84,8 +84,8 @@ const Navbar = ({
           </Link>
         </li>
         <div
-          className='dropdown  d-flex justify-content-end'
-          style={{ zIndex: 100 }}
+          className='dropdown  d-flex justify-content-end mt-1'
+          style={{ zIndex: 100, position: 'absolute', right: '1%' }}
         >
           <select className='btn btn-light dropdown-toggle justify-content-end'>
             <option>Категории товаров</option>
@@ -95,38 +95,7 @@ const Navbar = ({
           </select>
         </div>
       </ul>
-    </div>
-
-    // <Fragment>
-    //   <ul id='dropdown1' class='dropdown-content'>
-    //     <li>
-    //       {categories.map(category => (
-    //         <NavbarCategoryItem key={category.id_1} category={category} />
-    //       ))}
-    //     </li>
-    //   </ul>
-    //   <nav>
-    //     <div class='nav-wrapper'>
-    //       <a href='#!' class='brand-logo'>
-    //         Logo
-    //       </a>
-    //       <ul class='right hide-on-med-and-down'>
-    //         <li>
-    //           <a href='sass.html'>Sass</a>
-    //         </li>
-    //         <li>
-    //           <a href='badges.html'>Components</a>
-    //         </li>
-    //         {/* <!-- Dropdown Trigger --> */}
-    //         <li>
-    //           <a class='dropdown-trigger' href='#!' data-target='dropdown1'>
-    //             Dropdown<i class='material-icons right'>arrow_drop_down</i>
-    //           </a>
-    //         </li>
-    //       </ul>
-    //     </div>
-    //   </nav>
-    // </Fragment>
+    </Fragment>
   );
   // {
   //   !consumerLoading && (

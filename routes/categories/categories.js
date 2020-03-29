@@ -71,31 +71,39 @@ router.get('/get-category/:id', async (req, res) => {
   }
 });
 
-router.put('/update-category/:id', adminAuth, async (req, res) => {
-  try {
-    await Category.findByIdAndUpdate(
-      { _id: req.params.id },
-      {
-        name: req.body.name
-      },
-      (err, category) => {
-        if (err || !category) {
-          return res.status(400).json({
-            error: 'Не удалось внести изменения в название категории'
-          });
-        } else {
-          res.status(200).json({
-            message: 'Название категории успешно изменено',
-            data: category
-          });
-        }
-      }
-    );
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
-  }
+router.put('/update-category/:id', function(req, res) {
+  Category.findByIdAndUpdate({ _id: req.params.id }, req.body).then(function() {
+    Category.findOne({ _id: req.params.id }).then(function(category) {
+      res.send(category);
+    });
+  });
 });
+
+// router.put('/update-category/:id', adminAuth, async (req, res) => {
+//   try {
+//     await Category.findByIdAndUpdate(
+//       { _id: req.params.id },
+//       {
+//         name: req.body.name
+//       },
+//       (err, category) => {
+//         if (err || !category) {
+//           return res.status(400).json({
+//             error: 'Не удалось внести изменения в название категории'
+//           });
+//         } else {
+//           res.status(200).json({
+//             message: 'Название категории успешно изменено',
+//             data: category
+//           });
+//         }
+//       }
+//     );
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send('Server error');
+//   }
+// });
 
 router.delete('/delete-category/:id', adminAuth, async (req, res) => {
   try {

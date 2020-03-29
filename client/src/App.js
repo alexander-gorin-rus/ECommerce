@@ -20,8 +20,8 @@ import CategoryUpdate from './components/admin/products/category/CategoryUpdate'
 
 //CSS
 import './App.css';
-import 'materialize-css/dist/css/materialize.min.css';
-import M from 'materialize-css/dist/js/materialize.min.js';
+// import 'materialize-css/dist/css/materialize.min.css';
+// import M from 'materialize-css/dist/js/materialize.min.js';
 
 //Redux
 import store from './store';
@@ -43,10 +43,10 @@ const App = () => {
     store.dispatch(loadAdmin(), loadConsumer());
   }, []);
 
-  useEffect(() => {
-    //Init Materialize JS
-    M.AutoInit();
-  });
+  // useEffect(() => {
+  //   //Init Materialize JS
+  //   M.AutoInit();
+  // });
 
   return (
     <Provider store={store}>
