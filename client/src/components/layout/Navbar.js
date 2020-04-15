@@ -67,34 +67,62 @@ const Navbar = ({
 
   const guestLinks = (
     <Fragment>
-      <ul className='nav nav-tabs bg-primary'>
-        <li className='nav-item'>
-          <Link className='nav-link text-light' to='/'>
-            Главная
-          </Link>
-        </li>
-        <li className='nav-item'>
-          <Link className='nav-link text-light' to='/signup'>
-            Зарегистрироваться
-          </Link>
-        </li>
-        <li className='nav-item'>
-          <Link className='nav-link text-light' to='/signin'>
-            Войти
-          </Link>
-        </li>
-        <div
-          className='dropdown  d-flex justify-content-end mt-1'
-          style={{ zIndex: 100, position: 'absolute', right: '1%' }}
-        >
-          <select className='btn btn-light dropdown-toggle justify-content-end'>
-            <option>Категории товаров</option>
-            {categories.map(category => (
-              <NavbarCategoryItem key={category.id_1} category={category} />
-            ))}
-          </select>
-        </div>
-      </ul>
+      <div
+        style={{
+          position: 'absolute',
+          top: '0%',
+          width: '100vw',
+          zIndex: '100'
+        }}
+      >
+        <ul className='nav nav-tabs bg-primary'>
+          <li className='nav-item'>
+            <Link className='nav-link text-light' to='/'>
+              <i className='fas fa-home mx-2'> Главная</i>
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link className='nav-link text-light' to='/signup'>
+              <i className='fas fa-registered'> Зарегистрироваться</i>
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link className='nav-link text-light' to='/signin'>
+              <i className='fas fa-external-link-alt'> Войти</i>
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link className='nav-link text-light' to='/temp-products'>
+              <i className='fas fa-external-link-alt'> Products</i>
+            </Link>
+          </li>
+          <div
+            className=' d-flex justify-content-end mt-1'
+            style={{ zIndex: 10, position: 'absolute', right: '1%' }}
+          >
+            {/* DropDown Menu */}
+            <div className='dropdown show'>
+              <Link
+                className='btn mx-1 btn-light dropdown-toggle'
+                to='#'
+                role='button'
+                id='dropdownMenuLink'
+                data-toggle='dropdown'
+                aria-haspopup='true'
+                aria-expanded='false'
+              >
+                Категории товаров
+              </Link>
+
+              <div className='dropdown-menu' aria-labelledby='dropdownMenuLink'>
+                {categories.map((category, _id) => (
+                  <NavbarCategoryItem key={_id} category={category} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </ul>
+      </div>
     </Fragment>
   );
   // {

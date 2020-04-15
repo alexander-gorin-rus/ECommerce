@@ -4,14 +4,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CategoryItem from './CategoryItem';
 import Preloader from '../../../layout/Preloader';
-import { createCateg, getCategories } from '../../../../actions/category';
+import { getCategories, createCateg } from '../../../../actions/category';
+import {} from '../../../../components/apiAdmin';
 import { setAlert } from '../../../../actions/alert';
 
 const CreateCategory = ({
   createCateg,
   setAlert,
   getCategories,
-  category: { categories, category, loading }
+  category: { categories, loading }
 }) => {
   useEffect(() => {
     getCategories();
@@ -36,7 +37,7 @@ const CreateCategory = ({
 
   return (
     <Fragment>
-      <h4 className='text-center mt-5'>Создать новую категорию товаров</h4>
+      <h4 className=' mt-5'>Создать новую категорию товаров</h4>
       <form onSubmit={e => onSubmit(e)}>
         <div className='form-group'>
           <input
@@ -57,7 +58,7 @@ const CreateCategory = ({
           Вернуться в админ панель
         </Link>
       </form>
-      <h4 className='text-center'>Список существующих категорий</h4>
+      <h4 className=''>Список существующих категорий</h4>
 
       {loading ? (
         <Preloader />

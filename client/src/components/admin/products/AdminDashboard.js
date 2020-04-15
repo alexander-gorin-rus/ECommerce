@@ -7,23 +7,38 @@ import { logoutAdmin } from '../../../actions/admin';
 const AddProducts = ({ logoutAdmin }) => {
   return (
     <Fragment>
-      <h3 className='text-center pt-1'>Добро пожаловать в админ панель</h3>
       <form>
+        <h3 className=' pt-1'>Добро пожаловать в админ панель</h3>
         <div className='form-row'>
-          <div className='col'>
+          <div className='col-4'>
+            <p type='text-center' className='form-control'>
+              <Link to='create_name'>Создать название компании</Link>
+            </p>
+          </div>
+          <div className='col-4'>
+            <p type='text-center' className='form-control'>
+              <Link to='create_text'>Создать текст о компании</Link>
+            </p>
+          </div>
+          <div className='col-4'>
             <p type='text-center' className='form-control'>
               <Link to='create_category'>Создать категорию</Link>
             </p>
           </div>
-          <div className='col'>
+          <div className='col-4'>
             <p type='text' className='form-control'>
               <Link to='create_product'>Создать продукт</Link>
+            </p>
+          </div>
+          <div className='col-4'>
+            <p type='text' className='form-control'>
+              <Link to='create_partner'>Создать партнера</Link>
             </p>
           </div>
         </div>
       </form>
       <div onClick={logoutAdmin} className='text-light bg-danger p-1'>
-        <p className='text-center pointer'>Выйти из админ панели</p>
+        <p className=' pointer'>Выйти из админ панели</p>
       </div>
     </Fragment>
   );

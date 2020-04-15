@@ -8,10 +8,10 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  created: false,
-  loading: true,
+  products: [],
   product: null,
-  products: []
+  created: false,
+  loading: true
 };
 
 export default function(state = initialState, action) {
@@ -27,9 +27,8 @@ export default function(state = initialState, action) {
     case PRODUCTS_GET:
       return {
         ...state,
-        created: true,
-        loading: false,
-        products: payload
+        products: payload,
+        loading: false
       };
     case PRODUCT_ERROR:
     case PRODUCT_DELETE:
@@ -38,7 +37,7 @@ export default function(state = initialState, action) {
         created: false,
         loading: true,
         product: null,
-        products: null
+        products: []
       };
     default:
       return state;

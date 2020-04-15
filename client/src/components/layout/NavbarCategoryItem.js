@@ -1,17 +1,14 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 const NavbarCategoryItem = ({ category: { name } }) => {
-  return <option>{name}</option>;
+  return (
+    <Fragment>
+      <Link className='navbar-link px-2' to={`/products/${name}`}>
+        {name}
+      </Link>
+      <br />
+    </Fragment>
+  );
 };
 
-NavbarCategoryItem.propTypes = {
-  category: PropTypes.object.isRequired
-};
-
-// const mapStateToProps = state => ({
-//   category: state.category
-// });
-
-export default connect(null)(NavbarCategoryItem);
+export default NavbarCategoryItem;

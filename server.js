@@ -28,7 +28,11 @@ app.use('/api', require('./routes/admin/admin'));
 app.use('/api', require('./routes/consumers/consumers'));
 app.use('/api', require('./routes/categories/categories'));
 app.use('/api', require('./routes/products/product'));
-// app.use('/car-cleaners', require('./routes/products/carCleaners'));
+app.use('/api', require('./routes/texts/text1'));
+app.use('/api', require('./routes/texts/companyName'));
+app.use('/api', require('./routes/partners/partners'));
+app.use('/api', require('./routes/frontPage/frontPage'));
+app.use('/uploads', express.static('uploads'));
 
 app.use(errorHandler);
 

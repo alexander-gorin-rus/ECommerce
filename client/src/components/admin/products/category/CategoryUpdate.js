@@ -2,7 +2,6 @@ import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { updateCategory } from '../../../../actions/category';
 import { connect } from 'react-redux';
-import M from 'materialize-css/dist/js/materialize.min.js';
 
 const CategoryUpdate = ({ current, updateCategory }) => {
   const [name, setName] = useState('');
@@ -15,9 +14,7 @@ const CategoryUpdate = ({ current, updateCategory }) => {
 
   const onSubmit = () => {
     if (name === '') {
-      M.toast({
-        html: 'Поле с названием категории не должно оставаться пустым'
-      });
+      console.log('error');
     } else {
       const updatedCategory = {
         id: current.id,

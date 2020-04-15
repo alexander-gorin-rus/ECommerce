@@ -3,31 +3,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteCategory, setCurrent } from '../../../../actions/category';
 
-const CategoryItem = ({
-  category: { _id, name },
-  category,
-  deleteCategory,
-  setCurrent
-}) => {
+const CategoryItem = ({ category: { _id, name }, deleteCategory }) => {
   return (
     <Fragment>
-      <p className='border'>
-        {name}
-        {'  '}
-        <a
-          className='waves-effect waves-light btn modal-trigger'
-          href='#edit-category-modal'
-          onClick={() => setCurrent(category)}
-        >
-          Редактировать
-        </a>
+      <div className=' d-flex'>
+        <h6 className='px-3 py-3'> {name}</h6>
         <button
-          className='m-2 p-1 bg-danger rounded'
+          className='m-2 p-1 bg-danger rounded '
           onClick={e => deleteCategory(_id)}
         >
           Удалить
         </button>
-      </p>
+      </div>
     </Fragment>
   );
 };

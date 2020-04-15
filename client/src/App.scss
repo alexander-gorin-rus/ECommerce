@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+body {
+  background: white;
+}
+
 :root {
   --primary-color: #17a2b8;
   --dark-color: #4599ec;
@@ -11,6 +15,7 @@
   --danger-color: #dc3545;
   --success-color: #28a745;
   --light-grey: #bfbccb;
+  --dark-blue: #0e18ab;
 }
 
 .container {
@@ -31,12 +36,155 @@
   background: var(--light-blue);
 }
 
+.navbar-link {
+  font-size: 0.9rem;
+}
+
 .landing-page {
-  background: url('./img/drop4.png') no-repeat center center/cover;
+  background: url('./img/lab1.jpg') no-repeat center center/cover;
   position: absolute;
-  top: 7.5vh;
+  top: 7vh;
   width: 100vw;
-  height: 93vh;
+  height: 90vh;
+}
+
+.cover-photo {
+  position: absolute;
+  top: 2vh;
+  width: 100vw;
+  height: 90vh;
+  background: var(--dark-blue);
+  opacity: 0.4;
+}
+
+.company-info {
+  position: absolute;
+  top: 90vh;
+  width: 100vw;
+  height: 0%;
+  justify-content: center;
+  float: center;
+  background: #17a2b8;
+}
+
+.paralax-text1 {
+  position: absolute;
+  top: 0%;
+  width: 100vw;
+  height: auto;
+  background: #fff38d;
+  padding-bottom: 180px;
+}
+
+.company-name-text {
+  position: absolute;
+  width: 100vw;
+  top: 30vh;
+}
+
+.text-center {
+  position: absolute;
+  top: -10vh;
+  text-align: center;
+}
+
+.company-name {
+  font-family: Caveat;
+  color: white;
+  font-size: 5rem;
+}
+
+.company-text {
+  font-family: 'Lobster';
+  opacity: 0;
+  margin-top: 50px;
+  align-items: center;
+}
+
+#professionality-relative {
+  position: relative;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+}
+
+#professionality-move-1 {
+  position: absolute;
+  top: 0%;
+  right: -100%;
+  width: 100%;
+  height: 93%;
+  z-index: 10;
+  background-color: red;
+  opacity: 0.2;
+  font-size: 3rem;
+  border: 1px solid black;
+  animation-fill-mode: forwards;
+  animation-name: profy-1;
+  animation-duration: 8s;
+  animation-delay: 3.2s;
+  animation-iteration-count: 1;
+}
+
+@keyframes profy-1 {
+  from {
+    top: 0%;
+    right: -100%;
+  }
+  to {
+    top: 0%;
+    left: 0%;
+  }
+}
+
+/* #professionality-move-2 {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  border: 1px solid green;
+  animation-fill-mode: forwards;
+  animation-name: profy-2;
+  animation-duration: 6s;
+  animation-delay: 15s;
+  animation-iteration-count: 1;
+}
+
+@keyframes profy-2 {
+  from {
+    top: 50%;
+    left: 20%;
+  }
+  to {
+    top: 50%;
+    left: -50%;
+  }
+} */
+
+.partners-div {
+  position: absolute;
+  top: 150%;
+  width: 100vw;
+  height: 100vh;
+  background: #7dff49;
+  font-family: 'Lobster';
+}
+
+.news-div {
+  position: absolute;
+  top: 290%;
+  width: 100vw;
+  height: 100vh;
+  background: #f9bffe;
+}
+
+.paralax-text1-line {
+  position: relative;
+  top: 110%;
+  width: 5%;
+  height: 15px;
+  background: #dc3545;
+  z-index: 100;
 }
 
 .admin-panel {
@@ -78,19 +226,6 @@
 }
 .text-decoration {
   text-decoration: none;
-}
-
-.company-info {
-  position: absolute;
-  top: 20vh;
-  width: 100%;
-  justify-content: center;
-  float: center;
-  font-size: 3rem;
-}
-
-.text-center {
-  text-align: center;
 }
 
 .edit-category {

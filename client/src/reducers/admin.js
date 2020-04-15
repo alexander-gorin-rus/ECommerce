@@ -9,7 +9,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  token: localStorage.getItem('admin_token'),
+  admin_token: localStorage.getItem('admin_token'),
   isAuthenticated: false,
   loading: true,
   admin: null
@@ -44,7 +44,7 @@ export default function(state = initialState, action) {
       localStorage.removeItem('admin_token');
       return {
         ...state,
-        token: null,
+        admin_token: null,
         isAuthenticated: false,
         loading: false,
         admin: null

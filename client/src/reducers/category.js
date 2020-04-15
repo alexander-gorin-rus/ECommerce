@@ -58,7 +58,6 @@ export default function(state = initialState, action) {
         categories: state.categories.map(category =>
           category.id === payload.id ? payload : category
         ),
-        //category: payload,
         loading: false
       };
     case CATEGORY_GET:

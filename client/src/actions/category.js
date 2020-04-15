@@ -55,7 +55,7 @@ export const getCategory = id => async dispatch => {
   }
 };
 
-//create or update category
+//create category
 export const createCateg = ({ name }) => async dispatch => {
   const config = {
     headers: {
